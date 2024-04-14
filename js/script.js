@@ -1,6 +1,4 @@
-// import $ from 'jquery';
-// import _ from 'lodash';
-import initScrollSuave from './modules/scroll-suave.js';
+import ScrollSuave from './modules/scroll-suave.js';
 import initAnimacaoScroll from './modules/scroll-animacao.js';
 import initAccordion from './modules/accordion.js';
 import initTabNav from './modules/tabnav.js';
@@ -12,12 +10,8 @@ import initFuncionamento from './modules/horario-funcionamento.js';
 import initFetchAnimais from './modules/fetch-animais.js';
 import initFetchBitcoin from './modules/fetch-bitcoins.js';
 
-// $('nav').hide();
-// const diferenca = _.difference(['Banana', 'Abacaxi', 'Laranja',
-//   'Mamao'], ['Abacaxi', 'Mamao', 'Uva']);
-// console.log(diferenca);
-
-initScrollSuave();
+const scrollSuave = new ScrollSuave('[data-menu="suave"] a[href^="#"]');
+scrollSuave.init();
 initAnimacaoScroll();
 initAccordion();
 initTabNav();
