@@ -37,6 +37,15 @@ npm install --save-dev @babel/core @babel/preset-env @babel/plugin-transform-run
 
 Criar o arquivo webpack.config.js
 
+=================== Projeto final ====================
+git init
+git add -A
+git commit -m "Primeiro Commit"
+git remote add origin git@github.com:Roger-Franco/animais-fantasticos.git
+git push -u origin master 
+
+npm install
+npm run dev
 
 
 
@@ -44,6 +53,7 @@ Criar o arquivo webpack.config.js
 11 Refatorar Projeto Final
 00:00:00 1101 Repositório Git
 00:04:10 1102 Refatorar Scroll Suave
+
 00:21:28 1103 Refatorar Accordion
 00:30:28 1104 Refatorar Tabnav
 00:38:42 1105 Refatorar Modal

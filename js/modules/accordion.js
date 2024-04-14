@@ -17,5 +17,5 @@ export default function initAccordion() {
       item.addEventListener('click', activeItem);
     });
   }
-  console.log('test');
 }
+console.log('test!!2');
