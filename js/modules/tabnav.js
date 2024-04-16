@@ -1,26 +1,33 @@
-export default function initTabNav() {
-  const tabMenu = document.querySelectorAll('[data-tab="menu"] li');
-  const tabContent = document.querySelectorAll('[data-tab="content"] section');
-  tabContent[0].classList.add('ativo');
-
-  function activeTab(index) {
-    // tabContent.forEach((li, i) => {
-    //   console.log(li, i);
-    //   if(index === li[i])
-    //   li.classList.add('ativo')
-    // })
-    tabContent.forEach((section) => {
-      section.classList.remove('ativo');
-    });
-    const direcao = tabContent[index].dataset.anime;
-    tabContent[index].classList.add('ativo', direcao);
+export default class TabNav {
+  constructor(menu, content) {
+    this.tabMenu = document.querySelectorAll(menu);
+    this.tabContent = document.querySelectorAll(content);
+    this.activeClass = 'ativo';
   }
 
-  if (tabContent.length && tabMenu.length) {
-    tabMenu.forEach((itemMenu, idx) => {
+  // Ativa a tab de acordo com o index da mesma
+  activeTab(index) {
+    this.tabContent.forEach((section) => {
+      section.classList.remove(this.activeClass);
+    });
+    const direcao = this.tabContent[index].dataset.anime;
+    this.tabContent[index].classList.add(this.activeClass, direcao);
+  }
+
+  // Adiciona os eventos nas tabs
+  addTabNavEvent() {
+    this.tabMenu.forEach((itemMenu, idx) => {
       itemMenu.addEventListener('click', () => {
-        activeTab(idx);
+        this.activeTab(idx);
       });
     });
+  }
+
+  init() {
+    if (this.tabContent.length && this.tabMenu.length) {
+      // Ativa primeiro item
+      this.activeTab(0);
+      this.addTabNavEvent();
+    }
   }
 }
