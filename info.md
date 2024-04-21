@@ -56,8 +56,8 @@ npm run dev
 00:21:28 1103 Refatorar Accordion
 00:30:28 1104 Refatorar Tabnav
 00:38:42 1105 Refatorar Modal
-
 00:54:58 1106 Refatorar Tooltip
+
 01:13:08 1107 Refatorar Anima Números
 01:34:28 1108 Refatorar Fetch Animais
 01:43:37 1109 Refatorar Fetch Bitcoin
