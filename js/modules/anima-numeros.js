@@ -1,40 +1,55 @@
-export default function initAnimaNumeros() {
-  function animaNumeros() {
-    const numeros = document.querySelectorAll('[data-numero]');
-    // const titulo = document.querySelector('.titulo');
-    // console.log(numeros, 'numeros');
+export default class AnimaNumeros {
+  constructor(numeros, observerTarget, observerClass) {
+    this.numeros = document.querySelectorAll(numeros);
+    this.observerTarget = document.querySelector(observerTarget);
+    this.observerClass = observerClass;
 
-    numeros.forEach((numero) => {
-      const total = +numero.innerText;
-      const incremento = Math.floor(total / 100);
-
-      let start = 0;
-      const timer = setInterval(() => {
-        start += incremento;
-        numero.innerText = start;
-        if (start > total) {
-          numero.innerText = total;
-          clearInterval(timer);
-        }
-        // console.log(total, 'total')
-        // console.log(start, 'start')
-      }, 50 * Math.random());
-    });
+    // Bindo do this do objeto ao callback da mutação
+    this.handleMutation = this.handleMutation.bind(this);
   }
 
-  // Função abaixo é para identificar o momento em que o usuário estiver com a tela em
-  //  "Números", então a função de animação começa.
-  let observer; // racking para resolver questão do eslint no observer
-  function handleMutation(mutation) {
-    // console.log(mutation[0].target.classList.contains('ativo'))
-    if (mutation[0].target.classList.contains('ativo')) {
-      observer.disconnect();
-      animaNumeros();
+  // Recebe um elemento do dom, com número ems eu texto
+  // incrementa a partir de 0 até o número final
+  static incrementarNumero(numero) {
+    const total = +numero.innerText;
+    const incremento = Math.floor(total / 100);
+    let start = 0;
+    const timer = setInterval(() => {
+      start += incremento;
+      numero.innerText = start;
+      if (start > total) {
+        numero.innerText = total;
+        clearInterval(timer);
+      }
+      // console.log(total, 'total')
+      // console.log(start, 'start')
+    }, 50 * Math.random());
+  }
+
+  // Ativa incrementarNumero para cada numero selecionado do dom
+  animaNumeros() {
+    this.numeros.forEach((numero) => this.constructor.incrementarNumero(numero));
+  }
+
+  // Função que ocorre quando a mutação ocorrer
+  handleMutation(mutation) {
+    if (mutation[0].target.classList.contains(this.observerClass)) {
+      this.observer.disconnect();
+      this.animaNumeros();
     }
   }
 
-  observer = new MutationObserver(handleMutation);
-  const observerTarget = document.querySelector('.numeros');
+  // Adiciona o mutation observer para verificar quando a classe ativo é adicionada
+  // ao elemento target
+  addMutationObserver() {
+    this.observer = new MutationObserver(this.handleMutation);
+    this.observer.observe(this.observerTarget, { attributes: true });
+  }
 
-  observer.observe(observerTarget, { attributes: true });
+  init() {
+    if (this.numeros.length && this.observerTarget) {
+      this.addMutationObserver();
+    }
+    return this;
+  }
 }
