@@ -48,15 +48,28 @@ npm install
 npm run dev
 
 
-
+#Block024
 
 11 Refatorar Projeto Final
-00:00:00 1101 Repositório Git
-00:04:10 1102 Refatorar Scroll Suave
-00:21:28 1103 Refatorar Accordion
-00:30:28 1104 Refatorar Tabnav
-00:38:42 1105 Refatorar Modal
-00:54:58 1106 Refatorar Tooltip
-01:13:08 1107 Refatorar Anima Números
-01:34:28 1108 Refatorar Fetch Animais
-01:43:37 1109 Refatorar Fetch Bitcoin
+00:00:00 1110 Refazer Animação Scroll
+
+00:21:14 1111 Debounce
+00:33:52 1112 Refatorar Dropdown Menu
+00:43:01 1113 Refatorar Menu Mobile
+00:50:55 1114 Refatorar Funcionamento
+
+
+#Block025
+
+12 Slide
+00:00:00 1201 Slide Início
+00:04:26 1202 Slide Eventos
+00:19:14 1203 Slide Atualizar Distâncias
+00:30:53 1204 Slide Touch Events
+00:38:35 1205 Slide Config
+00:54:26 1206 Slide Next e Prev
+01:03:37 1207 Slide Resize
+01:14:10 1208 Slide Nav
+01:22:07 1209 Slide Paginação
+01:41:31 1210 Slide Custom Controls
+
