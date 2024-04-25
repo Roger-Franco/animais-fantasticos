@@ -13,8 +13,6 @@ export default class DropdownMenu {
     }
 
     this.activeClass = 'active';
-    this.events = ['touchstart', 'click'];
-
     this.activeDropDownMenu = this.activeDropDownMenu.bind(this);
   }
 
