@@ -55,8 +55,8 @@ npm run dev
 00:21:14 1111 Debounce
 00:33:52 1112 Refatorar Dropdown Menu
 00:43:01 1113 Refatorar Menu Mobile
-
 00:50:55 1114 Refatorar Funcionamento
+
 
 
 #Block025
