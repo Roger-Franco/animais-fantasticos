@@ -1,37 +1,40 @@
-export default function initFuncionamento() {
-  const funcionamento = document.querySelector('[data-semana]');
-  // const diasSemana = funcionamento.dataset.semana.split(',').map((num) => {
-  //   return Number(num)
-  // }) // macete abaixo
-  const diasSemana = funcionamento.dataset.semana.split(',').map(Number);
-  const horarioSemana = funcionamento.dataset.horario.split(',').map(Number);
+export default class Funcionamento {
+  constructor(funcionamento, activeClass) {
+    this.funcionamento = document.querySelector(funcionamento);
+    this.activeClass = activeClass;
+  }
 
-  // console.log(diasSemana, 'diasSemana');
-  // console.log(horarioSemana, 'horarioSemana');
+  dadosFuncionamento() {
+    this.diasSemana = this.funcionamento.dataset.semana.split(',').map(Number);
+    this.horarioSemana = this.funcionamento.dataset.horario.split(',').map(Number);
+  }
 
-  const dataAgora = new Date();
-  const diaAgora = dataAgora.getDay();
-  const horarioAgora = dataAgora.getHours();
+  dadosAgora() {
+    this.dataAgora = new Date();
+    this.diaAgora = this.dataAgora.getDay();
+    this.horarioAgora = this.dataAgora.getUTCHours() - 3;
+    // this.horarioAgora = this.dataAgora.getHours();;
+  }
 
-  // console.log(diaAgora, 'diaAgora');
-  // console.log(horarioAgora, 'horarioAgora');
-  // if(diaAgora > 0 && diaAgora < 6) {
-  //   console.log('Aberto');
-  // } else {
-  //   console.log('Fechado');
-  // }
+  estaAberto() {
+    const semanaAberto = this.diasSemana.indexOf(this.diaAgora) !== -1; // retorna um boolean
+    const horarioAberto = (this.horarioAgora >= this.horarioSemana[0]
+      && this.horarioAgora < this.horarioSemana[1]); // retorna um boolean
+    return semanaAberto && horarioAberto;
+  }
 
-  // const teste = [1, 2, 3, 4, 5].indexOf(6); // retorna -1 entao é false. Se o
-  // elemento existir, ele devolve o indice;
+  ativaAberto() {
+    if (this.estaAberto()) {
+      this.funcionamento.classList.add(this.activeClass);
+    }
+  }
 
-  const semanaAberto = diasSemana.indexOf(diaAgora) !== -1; // retorna um boolean
-  const horarioAberto = (horarioAgora >= horarioSemana[0]
-    && horarioAgora < horarioSemana[1]); // retorna um boolean
-
-  if (semanaAberto && horarioAberto) {
-    funcionamento.classList.add('aberto');
-    // console.log('Aberto');
-  } else {
-    // console.log('Fechado');
+  init() {
+    if (this.funcionamento) {
+      this.dadosFuncionamento();
+      this.dadosAgora();
+      this.ativaAberto();
+    }
+    return this;
   }
 }
